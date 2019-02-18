@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { StatusBar } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 
-import api from '../../services/api';
+import api from '../../../services/api';
 
 import {
   Container,
@@ -74,7 +74,7 @@ export default class SignIn extends Component {
     return (
       <Container>
         <StatusBar hidden />
-        <Logo source={require('../../images/white_logo.png')} resizeMode="contain" />
+        <Logo source={require('../../../images/white_logo.png')} resizeMode="contain" />
         <Input
           placeholder="Endereço de e-mail"
           value={this.state.email}

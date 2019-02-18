@@ -1,13 +1,31 @@
-import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator, createAppContainer, createBottomTabNavigator, createDrawerNavigator } from 'react-navigation';
 
-import SignIn from './screens/signIn';
-import SignUp from './screens/signUp';
+import SignIn from './screens/signScreens/signIn';
+import SignUp from './screens/signScreens/signUp';
 import Main from './screens/main';
+import Bar from './screens/tabScreens/bar';
+import Delivery from './screens/tabScreens/delivery';
+import Party from './screens/tabScreens/party';
+import Settings from './screens/drawerScreens/settings';
 
-const Routes = createStackNavigator({
+const signStack = createStackNavigator({
   SignIn,
-  SignUp,
-  Main,
+  SignUp
 });
 
-export default createAppContainer(Routes);
+const settingsDrawer = createDrawerNavigator({
+  Settings: { screen: Settings }
+});
+
+const tapOptionsMenu = createBottomTabNavigator({
+  Bar,
+  Delivery,
+  Party
+})
+
+const AppSwitchNavigator = createSwitchNavigator({
+  Welcome: { screen: signStack },
+  Main: settingsDrawer
+})
+
+export default createAppContainer(sign);
