@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { StatusBar } from 'react-native';
 
-import api from '../../../services/api';
+import { UserAPI } from '../../../../services/API';
 import { StackActions, NavigationActions } from 'react-navigation';
 
 import {
@@ -89,7 +89,7 @@ export default class SignUp extends Component {
     return (
       <Container>
         <StatusBar hidden />
-        <Logo source={require('../../../images/white_logo.png')} resizeMode="contain" />
+        <Logo source={require('../../../../images/white_logo.png')} resizeMode="contain" />
         {this.state.success.length !== 0 && <SuccessMessage>{this.state.success}</SuccessMessage>}
         <Input
           placeholder="Nome de usuário"

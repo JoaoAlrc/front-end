@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { StatusBar } from 'react-native';
+import { StatusBar, AsyncStorage } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 
-import api from '../../../services/api';
+import { UserAPI } from '../../../../services/API';
 
 import {
   Container,
@@ -52,19 +52,19 @@ export default class SignIn extends Component {
       this.setState({ error: 'Preencha usuário e senha para continuar!' }, () => false);
     } else {
       try {
-        const response = await api.post('/auth/login', {
-          email: this.state.email,
-          password: this.state.password,
-        });
+        let response = await UserAPI.login(this.state.email, this.state.password)
+        console.tron.log('oxi1',response)
+        await AsyncStorage.setItem('@user:token', response.data.data.token);
 
         const resetAction = StackActions.reset({
           index: 0,
           actions: [
-            NavigationActions.navigate({ routeName: 'Main', params: { token: response.data.token } }),
+            NavigationActions.navigate({ routeName: 'App', params: { token: response.data.data.token } }),
           ],
         });
         this.props.navigation.dispatch(resetAction);
       } catch (_err) {
+        console.tron.log('err', _err)
         this.setState({ error: 'Houve um problema com o login, verifique suas credenciais!' });
       }
     }
@@ -74,7 +74,7 @@ export default class SignIn extends Component {
     return (
       <Container>
         <StatusBar hidden />
-        <Logo source={require('../../../images/white_logo.png')} resizeMode="contain" />
+        <Logo source={require('../../../../images/white_logo.png')} resizeMode="contain" />
         <Input
           placeholder="Endereço de e-mail"
           value={this.state.email}
