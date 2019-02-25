@@ -24,15 +24,11 @@ const returnResponse = (response) => {
         default:
           if (response.data != undefined && response.data != '') reject(response.data);
           reject("Erro no servidor");
-        // response.json().then( response => {
-        //   if(response.data != undefined && response.data != '') return reject(response.data);
-        //   reject("Erro no servidor");
-        // }).catch( error => {
-        //   reject("Erro no servidor");
-        // })
       }
     }
-    else return resolve(response.json().then(response => response.data))
+    else {
+      return resolve(response.data)
+    }
   })
 }
 
@@ -46,7 +42,7 @@ export const UserAPI = {
         }
       }
       const body = {
-        "email":  email,
+        "email": email,
         "password": password
       }
       const response = await instance.post('/auth/login', body, config).then(returnResponse)

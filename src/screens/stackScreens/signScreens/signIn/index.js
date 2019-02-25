@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { StatusBar, AsyncStorage } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 
-import { UserAPI } from '../../../../services/API';
+import { UserAPI } from '../../../../services/api';
 
 import {
   Container,
@@ -53,13 +53,13 @@ export default class SignIn extends Component {
     } else {
       try {
         let response = await UserAPI.login(this.state.email, this.state.password)
-        console.tron.log('oxi1',response)
-        await AsyncStorage.setItem('@user:token', response.data.data.token);
+        console.tron.log('oxi1', response)
+        await AsyncStorage.setItem('@user:token', response.data.token);
 
         const resetAction = StackActions.reset({
           index: 0,
           actions: [
-            NavigationActions.navigate({ routeName: 'App', params: { token: response.data.data.token } }),
+            this.props.navigation.navigate('App'),
           ],
         });
         this.props.navigation.dispatch(resetAction);

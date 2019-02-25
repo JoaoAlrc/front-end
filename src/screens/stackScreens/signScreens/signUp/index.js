@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { StatusBar } from 'react-native';
 
-import { UserAPI } from '../../../../services/API';
+import { UserAPI } from '../../../../services/api';
 import { StackActions, NavigationActions } from 'react-navigation';
 
 import {

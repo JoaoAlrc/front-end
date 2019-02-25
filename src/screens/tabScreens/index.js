@@ -1,4 +1,4 @@
-import Bar from './bar'
+import Bar from './bar/index'
 import Delivery from './delivery'
 import Party from './party'
 
