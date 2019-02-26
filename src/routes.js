@@ -3,7 +3,7 @@ import { createSwitchNavigator, createStackNavigator, createAppContainer, create
 import Icon from 'react-native-vector-icons/Ionicons'
 
 import { SignIn, SignUp, Main, Splash } from './screens/stackScreens'
-import { Bar, Delivery, Party } from './screens/tabScreens';
+import { Bar, Delivery, Party, QRCodeScanner } from './screens/tabScreens';
 import { Profile, Settings } from './screens/drawerScreens';
 
 const signStack = createStackNavigator({
@@ -27,6 +27,7 @@ const mainStack = createStackNavigator({
   });
 
 const homeTabs = createBottomTabNavigator({
+  QRCodeScanner,
   Bar,
   Delivery,
   Party

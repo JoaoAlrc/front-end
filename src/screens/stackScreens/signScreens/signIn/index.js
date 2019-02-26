@@ -53,18 +53,9 @@ export default class SignIn extends Component {
     } else {
       try {
         let response = await UserAPI.login(this.state.email, this.state.password)
-        console.tron.log('oxi1', response)
         await AsyncStorage.setItem('@user:token', response.data.token);
-
-        const resetAction = StackActions.reset({
-          index: 0,
-          actions: [
-            this.props.navigation.navigate('App'),
-          ],
-        });
-        this.props.navigation.dispatch(resetAction);
+        this.props.navigation.navigate('Main')
       } catch (_err) {
-        console.tron.log('err', _err)
         this.setState({ error: 'Houve um problema com o login, verifique suas credenciais!' });
       }
     }
@@ -74,9 +65,10 @@ export default class SignIn extends Component {
     return (
       <Container>
         <StatusBar hidden />
-        <Logo source={require('../../../../images/white_logo.png')} resizeMode="contain" />
+        <Logo source={require('../../../../../images/white_logo.png')} resizeMode="contain" />
         <Input
-          placeholder="Endereço de e-mail"
+          placeholder="E-mail"
+          placeholderTextColor="#595959"
           value={this.state.email}
           onChangeText={this.handleEmailChange}
           autoCapitalize="none"
@@ -84,6 +76,7 @@ export default class SignIn extends Component {
         />
         <Input
           placeholder="Senha"
+          placeholderTextColor="#595959"
           value={this.state.password}
           onChangeText={this.handlePasswordChange}
           autoCapitalize="none"

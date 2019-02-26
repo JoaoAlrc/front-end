@@ -66,15 +66,23 @@ export const UserAPI = {
   }
 }
 
-export const AccountAPI = {
-  getAllClients: _ => {
-    const config = {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'default',
-      headers: getHeaders()
+export const BarAPI = {
+  getBar: async (id) => {
+    try {
+
+      const config = {
+        headers: {
+          'Authorization': 'Bearer ' + await AsyncStorage.getItem('@user:token'),
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }
+
+      const response = await instance.get(`/admin/bar/${id}`, config).then(returnResponse)
+      return response
+    } catch (error) {
+      return error
     }
-    return fetch(`${url}/api/sap/account/clients`, config).then(returnResponse)
   },
   getContacts: _ => {
     const config = {

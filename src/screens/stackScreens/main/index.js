@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { View } from 'react-native';
+import { AsyncStorage } from 'react-native';
+import { StackActions, NavigationActions } from 'react-navigation';
 
-// import styles from './styles';
+import {
+  Container,
+  Logo,
+  SuccessMessage,
+  Input,
+  ErrorMessage,
+  Button,
+  ButtonText,
+  SignInLink,
+  SignInLinkText,
+} from './styles';
 
-const Main = () => (
-  <View />
-);
+export default class Main extends Component {
 
-export default Main;
+  state = {
+  };
+
+  logOut = async () => {
+   await AsyncStorage.clear()
+   this.props.navigation.navigate('Auth')
+  }
+
+  render() {
+    return (
+      <Container>
+        <Button onPress={this.logOut}>
+          <ButtonText>Logout</ButtonText>
+        </Button>
+      </Container>
+    );
+  }
+}

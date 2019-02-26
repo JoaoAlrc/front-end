@@ -15,12 +15,14 @@ const Logo = styled.Image`
 const Input = styled.TextInput`
   paddingHorizontal: 20px;
   paddingVertical: 15px;
-  borderRadius: 5px;
-  backgroundColor: #FFF;
+  borderRadius: 25px;
+  backgroundColor: #000000;
+  border: 1px solid #595959;
   alignSelf: stretch;
   marginBottom: 15px;
   marginHorizontal: 20px;
   fontSize: 16px;
+  color: #FFF;
 `;
 
 const ErrorMessage = styled.Text`
@@ -32,15 +34,16 @@ const ErrorMessage = styled.Text`
 `;
 
 const Button = styled.TouchableHighlight`
-  padding: 20px;
-  borderRadius: 5px;
+  paddingHorizontal: 20px;
+  paddingVertical: 15px;
+  borderRadius: 25px;
   backgroundColor: #000000;
-  borderStyle: solid;
-  borderWidth: 1px;
-  borderColor: #a9a9a9
+  border: 1px solid #595959;
   alignSelf: stretch;
-  margin: 15px;
+  marginTop: 10px;
+  marginBottom: 15px;
   marginHorizontal: 20px;
+  fontSize: 16px;
 `;
 
 const ButtonText = styled.Text`

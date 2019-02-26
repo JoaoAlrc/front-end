@@ -89,17 +89,19 @@ export default class SignUp extends Component {
     return (
       <Container>
         <StatusBar hidden />
-        <Logo source={require('../../../../images/white_logo.png')} resizeMode="contain" />
+        <Logo source={require('../../../../../images/white_logo.png')} resizeMode="contain" />
         {this.state.success.length !== 0 && <SuccessMessage>{this.state.success}</SuccessMessage>}
         <Input
           placeholder="Nome de usuário"
+          placeholderTextColor="#595959"
           value={this.state.username}
           onChangeText={this.handleUsernameChange}
           autoCapitalize="none"
           autoCorrect={false}
         />
         <Input
-          placeholder="Endereço de e-mail"
+          placeholder="E-mail"
+          placeholderTextColor="#595959"
           value={this.state.email}
           onChangeText={this.handleEmailChange}
           autoCapitalize="none"
@@ -107,6 +109,7 @@ export default class SignUp extends Component {
         />
         <Input
           placeholder="Senha"
+          placeholderTextColor="#595959"
           value={this.state.password}
           onChangeText={this.handlePasswordChange}
           autoCapitalize="none"
