@@ -7,16 +7,17 @@ import { UserAPI } from '../../../../services/api';
 import { StackActions, NavigationActions } from 'react-navigation';
 
 import {
-  Container,
+  ScrollContainer,
   Logo,
   SuccessMessage,
   Input,
   ErrorMessage,
   Button,
   ButtonText,
-  SignInLink,
-  SignInLinkText,
-} from './styles';
+  SignUpLink,
+  SignUpLinkText,
+} from '../../../../components/styles';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class SignUp extends Component {
   static navigationOptions = {
@@ -32,23 +33,70 @@ export default class SignUp extends Component {
   };
 
   state = {
+    name: '',
+    surname: '',
     username: '',
     email: '',
     password: '',
+    password_confirmation: '',
+    birthdate: '',
+    cpf: '',
+    address: '',
+    addressNum: '',
+    neighborhood: '',
+    city: '',
+    state: '',
+    zipCode: '',
     error: '',
     success: '',
   };
 
-  handleUsernameChange = (username) => {
-    this.setState({ username });
-  };
-
-  handleEmailChange = (email) => {
-    this.setState({ email });
-  };
-
-  handlePasswordChange = (password) => {
-    this.setState({ password });
+  handleInputChange = (input) => {
+    switch (input) {
+      case 'name':
+        this.setState({ name: input });
+        break;
+      case 'surname':
+        this.setState({ surname: input });
+        break;
+      case 'username':
+        this.setState({ username: input });
+        break;
+      case 'email':
+        this.setState({ email: input });
+        break;
+      case 'password':
+        this.setState({ password: input });
+        break;
+      case 'password_confirmation':
+        this.setState({ password_confirmation: input });
+        break;
+      case 'birthdate':
+        this.setState({ birthdate: input });
+        break;
+      case 'cpf':
+        this.setState({ cpf: input });
+        break;
+      case 'address':
+        this.setState({ address: input });
+        break;
+      case 'addressNum':
+        this.setState({ addressNum: input });
+        break;
+      case 'neighborhood':
+        this.setState({ neighborhood: input });
+        break;
+      case 'city':
+        this.setState({ city: input });
+        break;
+      case 'state':
+        this.setState({ state: input });
+        break;
+      case 'zipCode':
+        this.setState({ zipCode: input });
+        break;
+      default: break;
+    }
   };
 
   handleBackToLoginPress = () => {
@@ -87,15 +135,100 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <Container>
+      <ScrollContainer>
         <StatusBar hidden />
-        <Logo source={require('../../../../../images/white_logo.png')} resizeMode="contain" />
+        <Logo source={require('../../../../../images/white_logo.png')}
+         resizeMode="contain" 
+         logoHeight={"10%"}
+         logoMgBtm={40}
+         logoMgTop
+         />
         {this.state.success.length !== 0 && <SuccessMessage>{this.state.success}</SuccessMessage>}
         <Input
           placeholder="Nome de usuário"
           placeholderTextColor="#595959"
           value={this.state.username}
-          onChangeText={this.handleUsernameChange}
+          onChangeText={() => this.handleInputChange('username')}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Input
+          placeholder="Nome"
+          placeholderTextColor="#595959"
+          value={this.state.name}
+          onChangeText={() => this.handleInputChange('name')}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Input
+          placeholder="Sobrenome"
+          placeholderTextColor="#595959"
+          value={this.state.surname}
+          onChangeText={() => this.handleInputChange('surname')}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Input
+          placeholder="Data de Nascimento"
+          placeholderTextColor="#595959"
+          value={this.state.birthdate}
+          onChangeText={() => this.handleInputChange('birthdate')}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Input
+          placeholder="CPF"
+          placeholderTextColor="#595959"
+          value={this.state.cpf}
+          onChangeText={() => this.handleInputChange('cpf')}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Input
+          placeholder="CEP"
+          placeholderTextColor="#595959"
+          value={this.state.zipCode}
+          onChangeText={() => this.handleInputChange('zipCode')}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Input
+          placeholder="Endereço"
+          placeholderTextColor="#595959"
+          value={this.state.address}
+          onChangeText={() => this.handleInputChange('address')}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Input
+          placeholder="Complemento"
+          placeholderTextColor="#595959"
+          value={this.state.addressNum}
+          onChangeText={() => this.handleInputChange('addressNum')}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Input
+          placeholder="Bairro"
+          placeholderTextColor="#595959"
+          value={this.state.neighborhood}
+          onChangeText={() => this.handleInputChange('neighborhood')}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Input
+          placeholder="Cidade"
+          placeholderTextColor="#595959"
+          value={this.state.city}
+          onChangeText={() => this.handleInputChange('city')}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Input
+          placeholder="Estado"
+          placeholderTextColor="#595959"
+          value={this.state.state}
+          onChangeText={() => this.handleInputChange('state')}
           autoCapitalize="none"
           autoCorrect={false}
         />
@@ -103,7 +236,7 @@ export default class SignUp extends Component {
           placeholder="E-mail"
           placeholderTextColor="#595959"
           value={this.state.email}
-          onChangeText={this.handleEmailChange}
+          onChangeText={() => this.handleInputChange('email')}
           autoCapitalize="none"
           autoCorrect={false}
         />
@@ -111,7 +244,16 @@ export default class SignUp extends Component {
           placeholder="Senha"
           placeholderTextColor="#595959"
           value={this.state.password}
-          onChangeText={this.handlePasswordChange}
+          onChangeText={() => this.handleInputChange('password')}
+          autoCapitalize="none"
+          autoCorrect={false}
+          secureTextEntry
+        />
+        <Input
+          placeholder="Confirmação de Senha"
+          placeholderTextColor="#595959"
+          value={this.state.password_confirmation}
+          onChangeText={() => this.handleInputChange('password_confirmation')}
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry
@@ -120,10 +262,10 @@ export default class SignUp extends Component {
         <Button onPress={this.handleSignUpPress}>
           <ButtonText>Criar conta</ButtonText>
         </Button>
-        <SignInLink onPress={this.handleBackToLoginPress}>
-          <SignInLinkText>Voltar ao login</SignInLinkText>
-        </SignInLink>
-      </Container>
+        <SignUpLink onPress={this.handleBackToLoginPress}>
+          <SignUpLinkText>Voltar ao login</SignUpLinkText>
+        </SignUpLink>
+      </ScrollContainer>
     );
   }
 }

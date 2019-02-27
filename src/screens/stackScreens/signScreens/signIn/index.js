@@ -15,7 +15,7 @@ import {
   ButtonText,
   SignUpLink,
   SignUpLinkText,
-} from './styles';
+} from '../../../../components/styles';
 
 export default class SignIn extends Component {
   static navigationOptions = {
@@ -65,7 +65,7 @@ export default class SignIn extends Component {
     return (
       <Container>
         <StatusBar hidden />
-        <Logo source={require('../../../../../images/white_logo.png')} resizeMode="contain" />
+        <Logo source={require('../../../../../images/white_logo.png')} resizeMode="contain" logoHeight={"30%"} logoMgBtm={"40px"} />
         <Input
           placeholder="E-mail"
           placeholderTextColor="#595959"

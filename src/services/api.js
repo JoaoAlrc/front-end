@@ -5,12 +5,6 @@ const instance = axios.create({
   baseURL: 'http://localhost:3333/api/v1',
 });
 
-const headers = {
-  'x-access-token': AsyncStorage.getItem('@user:token'),
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
 const returnResponse = (response) => {
   return new Promise((resolve, reject) => {
     if (response.status >= 400 && response.status < 600) {
@@ -69,7 +63,6 @@ export const UserAPI = {
 export const BarAPI = {
   getBar: async (id) => {
     try {
-
       const config = {
         headers: {
           'Authorization': 'Bearer ' + await AsyncStorage.getItem('@user:token'),
@@ -77,7 +70,6 @@ export const BarAPI = {
           'Accept': 'application/json'
         }
       }
-
       const response = await instance.get(`/admin/bar/${id}`, config).then(returnResponse)
       return response
     } catch (error) {

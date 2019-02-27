@@ -14,7 +14,7 @@ import {
   ButtonText,
   SignInLink,
   SignInLinkText,
-} from './styles';
+} from '../../../components/styles';
 
 export default class Main extends Component {
 

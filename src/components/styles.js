@@ -1,15 +1,26 @@
 import styled from 'styled-components';
 
+const ScrollContainer = styled.ScrollView.attrs({
+  contentContainerStyle: props => {
+    return {
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#000000'
+    }
+  }
+})``
+
 const Container = styled.View`
-  flex: 1;
+  flex: 2;
   alignItems: center;
   justifyContent: center;
   backgroundColor: #000000;
 `;
 
 const Logo = styled.Image`
-  height: 30%;
-  marginBottom: 40px;
+  height: ${props => props.logoHeight};
+  marginTop: ${props => props.logoMgTop ? "100px" : "0"};
+  marginBottom: ${props => props.logoMgBtm};
 `;
 
 const Input = styled.TextInput`
@@ -23,6 +34,14 @@ const Input = styled.TextInput`
   marginHorizontal: 20px;
   fontSize: 16px;
   color: #FFF;
+`;
+
+const SuccessMessage = styled.Text`
+  textAlign: center;
+  color: #08a092;
+  fontSize: 16px;
+  marginBottom: 15px;
+  marginHorizontal: 20px;
 `;
 
 const ErrorMessage = styled.Text`
@@ -43,7 +62,6 @@ const Button = styled.TouchableHighlight`
   marginTop: 10px;
   marginBottom: 15px;
   marginHorizontal: 20px;
-  fontSize: 16px;
 `;
 
 const ButtonText = styled.Text`
@@ -54,7 +72,7 @@ const ButtonText = styled.Text`
 `;
 
 const SignUpLink = styled.TouchableHighlight`
-  padding: 10px;
+  
   marginTop: 20px;
 `;
 
@@ -63,6 +81,7 @@ const SignUpLinkText = styled.Text`
   fontWeight: bold;
   fontSize: 16px;
   textAlign: center;
+  paddingBottom: 80px;
 `;
 
-export { Container, Logo, Input, ErrorMessage, Button, ButtonText, SignUpLink, SignUpLinkText };
+export { ScrollContainer, Container, Logo, Input, SuccessMessage, ErrorMessage, Button, ButtonText, SignUpLink, SignUpLinkText };

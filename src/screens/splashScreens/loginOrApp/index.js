@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-export default class Splash extends React.Component {
+export default class LoginOrApp extends React.Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();
