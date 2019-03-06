@@ -21,16 +21,28 @@ export default class Main extends Component {
   state = {
   };
 
-  logOut = async () => {
-   await AsyncStorage.clear()
-   this.props.navigation.navigate('Auth')
+  openList = async () => {
+    switch (type) {
+      case 'food':
+        this.props.navigation.navigate('Comidas')
+        break;
+    
+      default:
+        break;
+    }
   }
 
   render() {
     return (
       <Container>
-        <Button onPress={this.logOut}>
-          <ButtonText>Logout</ButtonText>
+        <Button onPress={this.openList('narg')}>
+          <ButtonText>Narg</ButtonText>
+        </Button>
+        <Button onPress={this.openList('drink')}>
+          <ButtonText>Drink</ButtonText>
+        </Button>
+        <Button onPress={this.openList('food')}>
+          <ButtonText>Food</ButtonText>
         </Button>
       </Container>
     );

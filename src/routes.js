@@ -9,6 +9,7 @@ import { SignIn, SignUp, Main } from './screens/stackScreens'
 import { Bar, Delivery, Party, QRCodeScanner } from './screens/tabScreens';
 import { Profile, Settings } from './screens/drawerScreens';
 import { LoginOrApp, ScannerOrBar } from './screens/splashScreens';
+import { Essence, Drink, Food } from './screens/modalScreens';
 
 const signStack = createStackNavigator({
   SignIn,
@@ -38,10 +39,17 @@ const mainStack = createStackNavigator({
 
 
 const TabSwitchNavigator = createSwitchNavigator({
-  Scanner: QRCodeScanner,
-  Bar: Bar,
   AuthLoading: ScannerOrBar,
+  Scanner: QRCodeScanner,
+  Bar,
+  Essências: Essence,
+  Bebidas: Drink,
+  Comidas: Food,
 },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  },
   {
     initialRouteName: 'AuthLoading',
   })
@@ -78,7 +86,7 @@ const homeTabs = createBottomTabNavigator({
 }, {
     tabBarOptions: {
       showLabel: false, // hide labels
-      activeTintColor:'#FFF',
+      activeTintColor: '#FFF',
       style: {
         backgroundColor: '#000' // TabBar background
       }
