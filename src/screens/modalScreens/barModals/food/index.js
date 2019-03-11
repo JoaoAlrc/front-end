@@ -17,9 +17,16 @@ import {
 } from '../../../../components/styles';
 
 export default class Food extends Component {
+  constructor(props) {
+    super(props)
 
-  state = {
-  };
+    const [stock, food] = props.navigation.state.params.foods
+    this.state = {
+      stock,
+      food,
+      isLoading: false
+    }
+  }
 
   logOut = async () => {
    await AsyncStorage.clear()
@@ -28,6 +35,12 @@ export default class Food extends Component {
 
   render() {
     return (
+      this.state.isLoading
+      ?
+      <Container>
+        <ActivityIndicator size="large" color="#FFF" animating />
+      </Container>
+      :
       <Container>
         <Button onPress={this.logOut}>
           <ButtonText>Food</ButtonText>

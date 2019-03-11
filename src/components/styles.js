@@ -44,6 +44,12 @@ const SuccessMessage = styled.Text`
   marginHorizontal: 20px;
 `;
 
+const Text = styled.Text`
+  textAlign: center;
+  color: #FFF;
+  fontSize: 16px;
+`;
+
 const ErrorMessage = styled.Text`
   textAlign: center;
   color: #ce2029;
@@ -84,4 +90,4 @@ const SignUpLinkText = styled.Text`
   paddingBottom: 80px;
 `;
 
-export { ScrollContainer, Container, Logo, Input, SuccessMessage, ErrorMessage, Button, ButtonText, SignUpLink, SignUpLinkText };
+export { Text, ScrollContainer, Container, Logo, Input, SuccessMessage, ErrorMessage, Button, ButtonText, SignUpLink, SignUpLinkText };

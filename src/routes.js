@@ -9,7 +9,7 @@ import { SignIn, SignUp, Main } from './screens/stackScreens'
 import { Bar, Delivery, Party, QRCodeScanner } from './screens/tabScreens';
 import { Profile, Settings } from './screens/drawerScreens';
 import { LoginOrApp, ScannerOrBar } from './screens/splashScreens';
-import { Essence, Drink, Food } from './screens/modalScreens';
+import { Narg, Drink, Food } from './screens/modalScreens';
 
 const signStack = createStackNavigator({
   SignIn,
@@ -42,7 +42,7 @@ const TabSwitchNavigator = createSwitchNavigator({
   AuthLoading: ScannerOrBar,
   Scanner: QRCodeScanner,
   Bar,
-  Essências: Essence,
+  Narguilê: Narg,
   Bebidas: Drink,
   Comidas: Food,
 },

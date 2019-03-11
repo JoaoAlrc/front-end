@@ -1,8 +1,22 @@
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 
-const instance = axios.create({
+const api = axios.create({
   baseURL: 'http://localhost:3333/api/v1',
+});
+
+api.interceptors.request.use(async (config) => {
+  try {
+    const token = await AsyncStorage.getItem('@user:token');
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  } catch (err) {
+    alert(err);
+  }
 });
 
 const returnResponse = (response) => {
@@ -39,25 +53,12 @@ export const UserAPI = {
         "email": email,
         "password": password
       }
-      const response = await instance.post('/auth/login', body, config).then(returnResponse)
+      const response = await api.post('/auth/login', body, config).then(returnResponse)
       return response
     } catch (error) {
       return error
     }
   },
-  getInfo: token => {
-    const myHeaders = new Headers()
-    myHeaders.append('x-access-token', token)
-    myHeaders.append('Content-Type', 'application/json')
-    myHeaders.append('Accept', 'application/json')
-    const config = {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'default',
-      headers: myHeaders
-    }
-    return fetch(`${url}/api/user/info`, config).then(returnResponse)
-  }
 }
 
 export const BarAPI = {
@@ -65,35 +66,43 @@ export const BarAPI = {
     try {
       const config = {
         headers: {
-          'Authorization': 'Bearer ' + await AsyncStorage.getItem('@user:token'),
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         }
       }
-      const response = await instance.get(`/admin/bar/${id}`, config).then(returnResponse)
+      const response = await api.get(`/admin/bar/${id}`, config).then(returnResponse)
       return response
     } catch (error) {
       return error
     }
   },
-  getContacts: _ => {
-    const config = {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'default',
-      headers: getHeaders()
+  getStock: async (bar_id) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }
+      const response = await api.get(`/admin/getStock/${bar_id}`, config).then(returnResponse)
+      return response
+    } catch (error) {
+      return error
     }
-    return fetch(`${url}/api/sap/account/contacts`, config).then(returnResponse)
   },
-  createContacts: (campaign) => {
-    const config = {
-      method: 'POST',
-      body: JSON.stringify(campaign),
-      mode: 'cors',
-      cache: 'default',
-      headers: getHeaders()
+  getProducts: async () => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }
+      const response = await api.get(`/admin/product`, config).then(returnResponse)
+      return response
+    } catch (error) {
+      return error
     }
-    return fetch(`${url}/api/sap/account/contacts`, config).then(returnResponse)
   },
   updateContacts: (account_contact_id, campaign) => {
     const config = {

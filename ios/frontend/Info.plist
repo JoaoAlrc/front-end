@@ -37,8 +37,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Nós acessaremos sua câmera apenas para escanear o QR Code da sua mesa!</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIAppFonts</key>
@@ -73,5 +71,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+    <string>Nós utilizaremos a câmera apenas para leitura do QR Code!</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Your message to user when the photo library is accessed for the first time</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Your message to user when the microphone is accessed for the first time</string>
 </dict>
 </plist>

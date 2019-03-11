@@ -1,4 +1,4 @@
-import Bar from './bar/index'
+import Bar from './bar'
 import Delivery from './delivery'
 import Party from './party'
 import QRCodeScanner from './QRCodeScanner'

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import { StatusBar, AsyncStorage } from 'react-native';
+import { StatusBar, AsyncStorage, StyleSheet } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
+import { RNCamera } from 'react-native-camera';
 
 import { BarAPI } from '../../../services/api';
 
@@ -34,8 +35,8 @@ export default class QRCodeScanner extends Component {
       this.setState({ error: 'Preencha ID do bar para continuar!' }, () => false);
     } else {
       try {
-        let response = await BarAPI.getBar(this.state.id)
-        await AsyncStorage.setItem('@bar:id', response.id.toString());
+        let bar = await BarAPI.getBar(this.state.id)
+        await AsyncStorage.setItem('@bar:id', bar.id.toString());
         this.props.navigation.navigate('Bar')
       } catch (_err) {
         this.setState({ error: 'Houve um problema, verifique o ID!' });
@@ -43,11 +44,19 @@ export default class QRCodeScanner extends Component {
     }
   };
 
+  takePicture = async () => {
+    if (this.camera) {
+      const options = { quality: 0.5, base64: true };
+      const data = await this.camera.takePictureAsync(options)
+      alert(data);
+    }
+  }
+
   render() {
     return (
       <Container>
         <Input
-          placeholder="E-mail"
+          placeholder="ID da mesa"
           placeholderTextColor="#595959"
           value={this.state.id}
           onChangeText={this.handleIDChange}
@@ -58,7 +67,31 @@ export default class QRCodeScanner extends Component {
         <Button onPress={this.goBar}>
           <ButtonText>ID da mesa!</ButtonText>
         </Button>
+        {/* <RNCamera
+          ref={camera => {
+            this.camera = camera;
+          }}
+          style={styles.preview}
+          type={RNCamera.Constants.Type.back}
+          autoFocus={RNCamera.Constants.AutoFocus.on}
+          flashMode={RNCamera.Constants.FlashMode.off}
+          permissionDialogTitle={"Permission to use camera"}
+          permissionDialogMessage={
+            "We need your permission to use your camera phone"
+          }
+        />
+        <Button onPress={this.takePicture}>
+          <ButtonText> SNAP </ButtonText>
+        </Button> */}
       </Container>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  preview: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center"
+  }
+});

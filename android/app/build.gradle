@@ -72,12 +72,12 @@ import com.android.build.OutputFile
  * ]
  */
 
-compile (project(':react-native-camera')) {
+implementation (project(':react-native-camera')) {
     exclude group: "com.google.android.gms"
-    compile 'com.android.support:exifinterface:25.+'
-    compile ('com.google.android.gms:play-services-vision:10.2.0') {
-    force = true
-    }   
+    implementation 'com.android.support:exifinterface:27.+'
+    implementation ('com.google.android.gms:play-services-vision:17.0.2') {
+        force = true
+    }
 }
 
 project.ext.react = [
