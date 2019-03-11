@@ -28,24 +28,22 @@ export default class Narg extends Component {
     }
   }
 
-  renderItem = ({ item }) => {
-    return (
-      <View>
-        {console.tron.log('item', item)}
-        <Text>{item.name}</Text>
-      </View>
-    )
-  }
-
-   renderSeparator = () => {
+   renderItem = ({ item }) => {
      return (
-       <View style={{ height: 1, width: '100%', backgroundColor: '#595959'}}>
+       <View>
+         <Text>{item.name}</Text>
        </View>
      )
    }
 
+    renderSeparator = () => {
+      return (
+        <View style={{ height: 1, width: '100%', backgroundColor: '#595959'}}>
+        </View>
+      )
+    }
+
   render() {
-    console.tron.log(this.state.essence)
     return (
       this.state.isLoading
         ?
